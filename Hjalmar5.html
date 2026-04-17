@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THE GIFTED | Hjalmar P. Penaflor</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;1,600&family=Lato:wght@300;400;700&family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --gold: #C5A059;
+            --dark-bg: #0a0a0a;
+            --sidebar-width: 280px;
+            --text-gray: #a0a0a0;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+
+        body {
+            background-color: var(--dark-bg);
+            color: white;
+            font-family: 'Lato', sans-serif;
+            display: flex;
+        }
+
+        /* --- SIDEBAR NAVIGATION --- */
+        .sidebar {
+            width: var(--sidebar-width);
+            height: 100vh;
+            background: #0f0f0f;
+            position: fixed;
+            left: 0;
+            top: 0;
+            padding: 40px 25px;
+            border-right: 1px solid rgba(197, 160, 89, 0.2);
+            z-index: 1000;
+            overflow-y: auto;
+        }
+
+        .sidebar-logo {
+            font-family: 'Cinzel', serif;
+            color: var(--gold);
+            font-size: 1.4rem;
+            margin-bottom: 40px;
+            text-decoration: none;
+            display: block;
+            letter-spacing: 3px;
+        }
+
+        .sidebar-menu { list-style: none; margin-bottom: 40px; }
+        .sidebar-menu li { margin-bottom: 15px; }
+        .sidebar-menu a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: 0.3s;
+        }
+        .sidebar-menu a:hover { color: var(--gold); }
+
+        /* --- VIDEO BOXES --- */
+        .video-container h4 {
+            font-family: 'Cinzel', serif;
+            font-size: 0.7rem;
+            color: var(--gold);
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-bottom: 1px solid rgba(197,160,89,0.2);
+            padding-bottom: 5px;
+        }
+        .video-box {
+            width: 100%;
+            height: 135px;
+            background: #000;
+            margin-bottom: 15px;
+            border: 1px solid rgba(197,160,89,0.3);
+            border-radius: 4px;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+        }
+        .video-box img { width: 100%; height: 100%; object-fit: cover; opacity: 0.7; transition: 0.3s; }
+        .video-box:hover img { opacity: 1; }
+        .play-btn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: var(--gold);
+            font-size: 1.5rem;
+            pointer-events: none;
+            text-shadow: 0 0 10px rgba(0,0,0,0.8);
+        }
+        iframe { width: 100%; height: 100%; border: none; }
+
+        /* --- MAIN CONTENT --- */
+        .main-content {
+            margin-left: var(--sidebar-width);
+            width: calc(100% - var(--sidebar-width));
+        }
+
+        .hero {
+            height: 40vh;
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('founder.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .hero h2 { font-family: 'Cinzel', serif; font-size: 3rem; color: var(--gold); letter-spacing: 8px; }
+
+        /* --- FOUNDER PROFILE --- */
+        .founder-section {
+            padding: 80px 8%;
+            background: #0d0d0d;
+            display: flex;
+            align-items: flex-start;
+            gap: 60px;
+        }
+        .founder-img {
+            width: 380px;
+            height: 380px;
+            border-radius: 50%;
+            border: 3px solid var(--gold);
+            object-fit: cover;
+            box-shadow: 0 0 40px rgba(197, 160, 89, 0.2);
+        }
+        .founder-text { flex: 1; }
+        .founder-text h4 { font-family: 'Cinzel', serif; color: var(--gold); letter-spacing: 3px; margin-bottom: 10px; }
+        .founder-text h1 { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; margin-bottom: 20px; color: white; }
+        .founder-text p { font-size: 1.05rem; color: #bbb; line-height: 1.8; margin-bottom: 25px; }
+
+        .contact-details {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(197, 160, 89, 0.2);
+        }
+        .contact-details p { margin-bottom: 8px; color: var(--gold); font-weight: 700; font-size: 0.9rem; }
+        .contact-details span { color: white; font-weight: 400; margin-left: 10px; }
+
+        /* --- VENTURES --- */
+        .ventures { padding: 80px 8%; background: var(--dark-bg); }
+        .venture-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        .card {
+            background: #111;
+            padding: 40px 20px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.03);
+            transition: 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .card:hover { border-color: var(--gold); transform: translateY(-5px); }
+        .card img { width: 100px; height: 100px; border-radius: 50%; border: 1px solid var(--gold); margin-bottom: 20px; padding: 5px; }
+        .card h3 { font-family: 'Cinzel', serif; color: var(--gold); font-size: 1.2rem; margin-bottom: 15px; }
+        .card p { font-size: 0.85rem; color: #888; margin-bottom: 20px; }
+        .card a { color: var(--gold); text-decoration: none; font-weight: bold; font-size: 0.75rem; text-transform: uppercase; border-bottom: 1px solid var(--gold); padding-bottom: 3px; }
+
+        footer { padding: 60px; text-align: center; background: #050505; border-top: 1px solid rgba(197,160,89,0.2); }
+        .faith-statement { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.8rem; color: var(--gold); }
+
+        @media (max-width: 1024px) {
+            .sidebar { width: 100%; height: auto; position: relative; }
+            .main-content { margin-left: 0; width: 100%; }
+            .founder-section { flex-direction: column; text-align: center; }
+            .contact-details { text-align: left; display: inline-block; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="sidebar">
+        <a href="#" class="sidebar-logo">THE GIFTED</a>
+        <ul class="sidebar-menu">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">The Founder</a></li>
+            <li><a href="#ventures">Kingdom Ventures</a></li>
+            <li><a href="https://www.facebook.com/YALMARwarrriorOfGod" target="_blank">Founder FB</a></li>
+        </ul>
+
+        <div class="video-container">
+            <h4>Kingdom Media</h4>
+            <div class="video-box" onclick="this.innerHTML='<iframe src=\'https://www.youtube.com/embed/NV_g5kuzDG0?autoplay=1&start=207\' allowfullscreen></iframe>'">
+                <img src="video_cover_1.jpg" alt="Video Cover 1">
+                <div class="play-btn">▶</div>
+            </div>
+            <div class="video-box" onclick="this.innerHTML='<iframe src=\'https://www.youtube.com/embed/0DSLk5z6ZBU?autoplay=1&start=36\' allowfullscreen></iframe>'">
+                <img src="video_cover_2.jpg" alt="Video Cover 2">
+                <div class="play-btn">▶</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <section class="hero" id="home">
+            <h2>THE GIFTED</h2>
+        </section>
+
+        <section class="founder-section" id="about">
+            <img src="founder.jpg" alt="Hjalmar P. Penaflor" class="founder-img">
+            <div class="founder-text">
+                <h4>Founder & Pastor</h4>
+                <h1>Hjalmar P. Penaflor</h1>
+                <p>
+                    Dedicated to the strategic expansion of the Kingdom of God, Hjalmar P. Penaflor serves as a bridge between divine purpose and marketplace excellence. An accounting professional and seasoned consultant, Hjalmar discovered his true calling after a humble beginning in the province where he first encountered Christ. He believes that his professional expertise is a gift bestowed by God, specifically designed to help business owners launch and sustain their ventures with integrity.
+                </p>
+                <p>
+                    A visionary leader with a heart for the next generation, he is uniquely gifted to connect, encourage, and empower through the Word. Responding to the call of Isaiah—<em>'Here I am, Lord, send me'</em>—he remains determined that the vision given by the Lord will be realized (Habakkuk 2:3). He is committed to using his technical skills and business acumen for the greater expansion of God’s Kingdom, standing firm in the promise of Isaiah 54:17.
+                </p>
+                <div class="contact-details">
+                    <p>Direct: <span>+63 917 791 0520</span></p>
+                    <p>Email: <span>giftedconsul@gmail.com</span></p>
+                    <p>Promise: <span>"No weapon formed against you shall prosper." — Isaiah 54:17</span></p>
+                </div>
+            </div>
+        </section>
+
+        <section class="ventures" id="ventures">
+            <div class="venture-grid">
+                <div class="card">
+                    <img src="consultancy_logo.png" alt="THE GIFTED">
+                    <h3>THE GIFTED Consultancy</h3>
+                    <p>Linking elite expertise with small entrepreneurs to realize divine visions in the business world.</p>
+                    <a href="https://www.facebook.com/YALMARwarrriorOfGod" target="_blank">Connect Now</a>
+                </div>
+
+                <div class="card">
+                    <img src="saladman_logo.png" alt="Saladman">
+                    <h3>Saladman Cafe</h3>
+                    <p>Excellence in health and nutrition to fuel the workers of the Kingdom.</p>
+                    <a href="https://www.facebook.com/saladmanph/" target="_blank">Visit Page</a>
+                </div>
+
+                <div class="card">
+                    <img src="kbl_logo.png" alt="KBL">
+                    <h3>KBL & Friends</h3>
+                    <p>Kingdom Business Leaders. A platform for friendship and the expansion of the Kingdom of God.</p>
+                    <a href="https://www.facebook.com/profile.php?id=61585154350778" target="_blank">Join Us</a>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p class="faith-statement">"God is Faithful & True"</p>
+            <p style="margin-top:20px; font-size: 0.7rem; letter-spacing: 2px; opacity: 0.5;">HJALMAR P. PENAFLOR | NKJV SCRIPTURE | POWERED BY GIFTY</p>
+        </footer>
+    </div>
+
+</body>
+</html>
